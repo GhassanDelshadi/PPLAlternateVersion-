@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\DoctorSchedule;
+use App\Models\Layanan;
 use App\Models\Poli;
 use App\Models\Queue;
 use App\Models\User;
@@ -27,6 +28,7 @@ class AdminDashboardController extends Controller
         $hariIni = $dayMap[$todayEnglish] ?? 'senin';
 
         $totalPoli = Poli::where('status', true)->count();
+        $totalLayanan = Layanan::where('status', true)->count();
         $totalDokter = Doctor::count();
         $totalJadwal = DoctorSchedule::where('status', true)->count();
         $totalPasien = User::where('role', 'pasien')->count();
@@ -44,6 +46,7 @@ class AdminDashboardController extends Controller
 
         return view('admin.dashboard', compact(
             'totalPoli',
+            'totalLayanan',
             'totalDokter',
             'totalJadwal',
             'totalPasien',

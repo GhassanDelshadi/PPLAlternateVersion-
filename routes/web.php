@@ -82,6 +82,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('poli', PoliController::class)->except(['show', 'destroy']);
     Route::patch('poli/{poli}/toggle-status', [PoliController::class, 'toggleStatus'])->name('poli.toggle-status');
 
+    // PBI-12: Mengelola Layanan dan Tarif Klinik
+    Route::resource('layanan', \App\Http\Controllers\Admin\LayananController::class)->except(['show', 'destroy']);
+    Route::patch('layanan/{layanan}/toggle-status', [\App\Http\Controllers\Admin\LayananController::class, 'toggleStatus'])
+        ->name('layanan.toggle-status');
+
     // PBI-07: Kelola Jadwal Praktik Dokter
     Route::resource('jadwal', DoctorScheduleController::class)
         ->parameters(['jadwal' => 'doctorSchedule'])

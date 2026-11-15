@@ -316,6 +316,9 @@
                     <a href="{{ route('admin.poli.index') }}" class="nav-pill-item {{ request()->routeIs('admin.poli.*') ? 'active' : '' }}">
                         <i class="bi bi-diagram-3 me-1"></i> Data Poli
                     </a>
+                    <a href="{{ route('admin.layanan.index') }}" class="nav-pill-item {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
+                        <i class="bi bi-tag me-1"></i> Layanan &amp; Tarif
+                    </a>
                     <a href="{{ route('admin.jadwal.index') }}" class="nav-pill-item {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
                         <i class="bi bi-calendar-week me-1"></i> Jadwal Dokter
                     </a>
