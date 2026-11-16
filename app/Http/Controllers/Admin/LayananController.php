@@ -30,8 +30,8 @@ class LayananController extends Controller
 
         $query = Layanan::with('poli');
 
-        if ($request->filled('q')) {
-            $search = $request->query('q');
+        $search = $request->query('q') ?? $request->query('search');
+        if (! empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('nama_layanan', 'like', "%{$search}%")
                   ->orWhere('kode_layanan', 'like', "%{$search}%");
