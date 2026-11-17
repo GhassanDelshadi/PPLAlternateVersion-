@@ -11,7 +11,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
     {{-- KIRI: FORM --}}
-    <section class="lg:col-span-7 bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-sm p-6" style="border-top: 4px solid #0F5C5A;">
+    <section class="lg:col-span-7 bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-sm p-6" style="border-top: 4px solid #005954;">
         <div class="mb-6">
             <span class="text-label-uppercase font-label-uppercase text-secondary uppercase tracking-wider block mb-1">BUAT KONSULTASI ONLINE</span>
             <h1 class="text-headline-md md:text-headline-lg font-headline-lg text-on-surface">Pilih jadwal</h1>

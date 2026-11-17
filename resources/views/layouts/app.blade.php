@@ -6,19 +6,112 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin - Mengelola Data Poli') — Bonamu</title>
 
-    {{-- Bootstrap 5 CSS --}}
+    {{-- Bootstrap 5 CSS & Icons --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    {{-- Google Fonts: Plus Jakarta Sans, Playfair Display, JetBrains Mono --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --app-primary: #005954;
             --app-primary-hover: #004743;
+            --app-primary-dark: #092c24;
             --app-primary-light: #d1f4ed;
-            --app-bg: #f5f8fa;
+            --app-primary-border: #bbf0e1;
+            --app-bg: #f8fafa;
             --card-bg: #ffffff;
-            --text-color: #2d3748;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background-color: var(--app-primary-light);
+            color: var(--app-primary);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Focus Ring yang tegas dan rapi */
+        .form-control:focus, .form-select:focus {
+            border-color: var(--app-primary) !important;
+            box-shadow: 0 0 0 3px rgba(0, 89, 84, 0.15) !important;
+            outline: none !important;
+        }
+
+        /* Sinkronisasi warna tema Figma untuk seluruh komponen Bootstrap */
+        .btn-primary {
+            background-color: var(--app-primary) !important;
+            border-color: var(--app-primary) !important;
+            color: #ffffff !important;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+            background-color: var(--app-primary-hover) !important;
+            border-color: var(--app-primary-hover) !important;
+            color: #ffffff !important;
+        }
+        .btn-outline-primary {
+            color: var(--app-primary) !important;
+            border-color: var(--app-primary) !important;
+        }
+        .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
+            background-color: var(--app-primary) !important;
+            border-color: var(--app-primary) !important;
+            color: #ffffff !important;
+        }
+        .bg-primary {
+            background-color: var(--app-primary) !important;
+        }
+        .text-primary {
+            color: var(--app-primary) !important;
+        }
+        .border-primary {
+            border-color: var(--app-primary) !important;
+        }
+        .badge.bg-primary {
+            background-color: var(--app-primary) !important;
+            color: #ffffff !important;
+        }
+
+        /* Pagination & SVG Protection */
+        .page-item.active .page-link {
+            background-color: var(--app-primary) !important;
+            border-color: var(--app-primary) !important;
+            color: #ffffff !important;
+        }
+        .page-link {
+            color: var(--app-primary) !important;
+        }
+        .page-link:hover {
+            color: var(--app-primary-hover) !important;
+            background-color: #f1f5f9 !important;
+        }
+        .pagination svg,
+        nav[aria-label*="Pagination"] svg,
+        nav[aria-label*="pagination"] svg {
+            width: 1rem !important;
+            height: 1rem !important;
+            max-width: 1rem !important;
+            max-height: 1rem !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
         }
 
         body.dark-mode {
@@ -92,12 +185,33 @@
 
         .nav-pill-item {
             color: #4a5568;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            padding: 0.45rem 1rem;
+            padding: 0.45rem 0.85rem;
             border-radius: 50rem;
             text-decoration: none;
             transition: all 0.2s ease;
+            white-space: nowrap !important;
+            display: inline-flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+            gap: 0.45rem !important;
+            line-height: 1.2 !important;
+            word-break: keep-all !important;
+        }
+
+        .nav-pill-item span {
+            white-space: nowrap !important;
+            display: inline !important;
+        }
+
+        .nav-pill-item i {
+            font-size: 1rem;
+            line-height: 1;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .nav-pill-item:hover {
@@ -296,7 +410,7 @@
 <header class="app-header">
     <div class="container-xl d-flex align-items-center justify-content-between">
         {{-- Logo Brand --}}
-        <a href="{{ url('/') }}" class="d-flex align-items-center gap-3 text-decoration-none">
+        <a href="{{ url('/') }}" class="d-flex align-items-center gap-3 text-decoration-none flex-shrink-0">
             <div class="brand-logo-icon">
                 <i class="bi bi-hospital"></i>
             </div>
@@ -307,36 +421,42 @@
         </a>
 
         {{-- Navigasi Menu Dinamis Sesuai Role --}}
-        <nav class="d-none d-md-flex align-items-center gap-1">
+        <nav class="d-none d-md-flex align-items-center gap-1 gap-lg-2 flex-nowrap">
             @auth
                 @if(auth()->user()->role === 'admin')
                     <a href="{{ route('admin.dashboard') }}" class="nav-pill-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        <i class="bi bi-grid-fill me-1"></i> Dashboard
+                        <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
+                    </a>
+                    <a href="{{ route('admin.antrean.index') }}" class="nav-pill-item {{ request()->routeIs('admin.antrean.*') ? 'active' : '' }}">
+                        <i class="bi bi-ticket-detailed"></i> <span>Antrean Pasien</span>
                     </a>
                     <a href="{{ route('admin.poli.index') }}" class="nav-pill-item {{ request()->routeIs('admin.poli.*') ? 'active' : '' }}">
-                        <i class="bi bi-diagram-3 me-1"></i> Data Poli
+                        <i class="bi bi-diagram-3"></i> <span>Data Poli</span>
                     </a>
                     <a href="{{ route('admin.jadwal.index') }}" class="nav-pill-item {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
-                        <i class="bi bi-calendar-week me-1"></i> Jadwal Dokter
+                        <i class="bi bi-calendar-week"></i> <span>Jadwal Dokter</span>
+                    </a>
+                    <a href="{{ route('admin.layanan.index') }}" class="nav-pill-item {{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
+                        <i class="bi bi-tag"></i> <span>Layanan &amp; Tarif</span>
                     </a>
                     <a href="{{ route('admin.akun.index') }}" class="nav-pill-item {{ request()->routeIs('admin.akun.*') ? 'active' : '' }}">
-                        <i class="bi bi-people me-1"></i> Akun Staf
+                        <i class="bi bi-people"></i> <span>Akun Staf</span>
                     </a>
                 @elseif(auth()->user()->role === 'pasien')
                     <a href="{{ route('pasien.dashboard') }}" class="nav-pill-item {{ request()->routeIs('pasien.dashboard') ? 'active' : '' }}">
-                        <i class="bi bi-grid-fill me-1"></i> Dashboard
+                        <i class="bi bi-grid-fill"></i> <span>Dashboard</span>
                     </a>
                     <a href="{{ route('antrean.create') }}" class="nav-pill-item {{ request()->routeIs('antrean.create') ? 'active' : '' }}">
-                        <i class="bi bi-ticket-perforated me-1"></i> Ambil Antrean
+                        <i class="bi bi-ticket-perforated"></i> <span>Ambil Antrean</span>
                     </a>
                     <a href="{{ route('antrean.index') }}" class="nav-pill-item {{ request()->routeIs('antrean.index') || request()->routeIs('antrean.show') ? 'active' : '' }}">
-                        <i class="bi bi-card-checklist me-1"></i> Antrean Saya
+                        <i class="bi bi-card-checklist"></i> <span>Antrean Saya</span>
                     </a>
                     <a href="{{ route('pasien.profil.edit') }}" class="nav-pill-item {{ request()->routeIs('pasien.profil.*') ? 'active' : '' }}">
-                        <i class="bi bi-person-lines-fill me-1"></i> Profil Pasien
+                        <i class="bi bi-person-lines-fill"></i> <span>Profil Pasien</span>
                     </a>
                     <a href="{{ route('konsultasi.create') }}" class="nav-pill-item {{ request()->routeIs('konsultasi.*') ? 'active' : '' }}">
-                        <i class="bi bi-chat-dots me-1"></i> Konsultasi
+                        <i class="bi bi-chat-dots"></i> <span>Konsultasi</span>
                     </a>
                 @elseif(auth()->user()->role === 'dokter')
                     <a href="{{ route('dokter.konsultasi.index') }}" class="nav-pill-item {{ request()->routeIs('dokter.konsultasi.*') ? 'active' : '' }}">
@@ -351,7 +471,7 @@
         </nav>
 
         {{-- Profil & Action --}}
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-shrink-0">
             {{-- Quick Role Switcher untuk Testing --}}
             <div class="dropdown">
                 <button class="btn btn-sm btn-outline-secondary dropdown-toggle rounded-pill px-2 px-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Ganti Role Cepat">

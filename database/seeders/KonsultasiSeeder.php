@@ -93,6 +93,18 @@ class KonsultasiSeeder extends Seeder
                 ['user_id' => $pasien->id],
                 ['tanggal_lahir' => '2000-01-01', 'jenis_kelamin' => 'L', 'alamat' => 'Bandung']
             );
+
+            // Akun Administrator Utama
+            User::firstOrCreate(
+                ['email' => 'admin@test.com'],
+                [
+                    'name' => 'Admin Bonamu',
+                    'no_hp' => '081234567890',
+                    'password' => bcrypt('password'),
+                    'role' => 'admin',
+                    'is_active' => true,
+                ]
+            );
         });
     }
 }

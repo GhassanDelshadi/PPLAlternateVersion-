@@ -31,6 +31,7 @@ class AdminDashboardController extends Controller
         $totalJadwal = DoctorSchedule::where('status', true)->count();
         $totalPasien = User::where('role', 'pasien')->count();
         $antreanHariIni = Queue::whereDate('tanggal_antrean', Carbon::today())->count();
+        $totalAntrean = Queue::count();
 
         // Jadwal praktik untuk hari ini
         $jadwalHariIni = DoctorSchedule::with(['doctor.user', 'poli'])
@@ -48,6 +49,7 @@ class AdminDashboardController extends Controller
             'totalJadwal',
             'totalPasien',
             'antreanHariIni',
+            'totalAntrean',
             'jadwalHariIni',
             'polis',
             'hariIni'

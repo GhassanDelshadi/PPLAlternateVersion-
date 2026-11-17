@@ -8,10 +8,10 @@
     <div class="p-4 p-md-5 mb-4 rounded-4 text-white" style="background: linear-gradient(135deg, #005954 0%, #003633 100%);">
         <div class="row align-items-center">
             <div class="col-lg-8">
-                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3" style="font-size: 0.75rem;">
+                <span class="badge px-3 py-2 rounded-pill fw-bold text-uppercase mb-3" style="background-color: var(--app-primary-light); color: var(--app-primary); font-size: 0.75rem; letter-spacing: 0.05em;">
                     <i class="bi bi-shield-check me-1"></i> White-Box Testing & Prototype Hub
                 </span>
-                <h1 class="display-6 fw-bold mb-2">Portal Integrasi &amp; Pengujian Fitur Bonamu</h1>
+                <h1 class="font-display display-6 fw-bold mb-2">Portal Integrasi &amp; Pengujian Fitur Bonamu</h1>
                 <p class="lead text-white-50 mb-4" style="font-size: 1rem;">
                     Platform pengujian langsung seluruh fitur aplikasi terintegrasi (Auth, Poli, Jadwal Dokter, Antrean Online, Akun Staf, Konsultasi Online, dan Profil).
                 </p>
@@ -93,14 +93,14 @@
             {{-- Card Pasien --}}
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden">
-                    <div class="position-absolute top-0 start-0 w-100" style="height: 6px; background: #0d6efd;"></div>
+                    <div class="position-absolute top-0 start-0 w-100" style="height: 6px; background: #005954;"></div>
                     <div class="card-body p-4 d-flex flex-column">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="rounded-3 p-3 text-white bg-primary">
+                            <div class="rounded-3 p-3 text-white" style="background-color: #005954;">
                                 <i class="bi bi-person-heart fs-3"></i>
                             </div>
                             <div>
-                                <span class="badge bg-primary-subtle text-primary border px-2 py-1 rounded-pill fw-bold" style="font-size: 0.7rem;">PASIEN</span>
+                                <span class="badge border px-2 py-1 rounded-pill fw-bold" style="background-color: var(--app-primary-light); color: var(--app-primary); font-size: 0.7rem;">PASIEN</span>
                                 <h5 class="fw-bold mb-0 mt-1">Budi Santoso</h5>
                                 <small class="text-muted">pasien@test.com</small>
                             </div>
@@ -129,14 +129,14 @@
             {{-- Card Dokter --}}
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden">
-                    <div class="position-absolute top-0 start-0 w-100" style="height: 6px; background: #198754;"></div>
+                    <div class="position-absolute top-0 start-0 w-100" style="height: 6px; background: #092c24;"></div>
                     <div class="card-body p-4 d-flex flex-column">
                         <div class="d-flex align-items-center gap-3 mb-3">
-                            <div class="rounded-3 p-3 text-white bg-success">
+                            <div class="rounded-3 p-3 text-white" style="background-color: #092c24;">
                                 <i class="bi bi-clipboard2-pulse fs-3"></i>
                             </div>
                             <div>
-                                <span class="badge bg-success-subtle text-success border px-2 py-1 rounded-pill fw-bold" style="font-size: 0.7rem;">DOKTER PRAKTIK</span>
+                                <span class="badge border px-2 py-1 rounded-pill fw-bold" style="background-color: #e0f2fe; color: #0369a1; font-size: 0.7rem;">DOKTER PRAKTIK</span>
                                 <h5 class="fw-bold mb-0 mt-1">dr. Andi</h5>
                                 <small class="text-muted">dokter.andi@test.com</small>
                             </div>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminQueueController;
+use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\PoliController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DoctorScheduleController;
@@ -74,6 +76,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Dashboard Admin
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
+    // Monitoring & Pengelolaan Status Antrean Pasien
+    Route::get('/antrean', [AdminQueueController::class, 'index'])->name('antrean.index');
+    Route::patch('/antrean/{queue}/status', [AdminQueueController::class, 'updateStatus'])->name('antrean.update-status');
+
     // Profil Admin
     Route::get('/profil', [AdminProfileController::class, 'edit'])->name('profil.edit');
     Route::put('/profil', [AdminProfileController::class, 'update'])->name('profil.update');
@@ -88,6 +94,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         ->except(['show']);
     Route::post('jadwal/{doctorSchedule}/toggle-status', [DoctorScheduleController::class, 'toggleStatus'])
         ->name('jadwal.toggle-status');
+
+    // PBI-12: Mengelola Layanan dan Tarif
+    Route::resource('layanan', LayananController::class)->except(['show', 'destroy']);
+    Route::patch('layanan/{layanan}/toggle-status', [LayananController::class, 'toggleStatus'])->name('layanan.toggle-status');
 });
 
 // PBI-03: Admin membuat akun dokter dan admin (otorisasi internal di controller)
@@ -123,9 +133,13 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
         Route::get('/buat', [KonsultasiOnlineController::class, 'create'])->name('create');
         Route::post('/', [KonsultasiOnlineController::class, 'store'])->name('store');
         Route::get('/{consultation}', [KonsultasiOnlineController::class, 'show'])->name('show');
-        Route::get('/{consultation}/ruang', [RuangKonsultasiController::class, 'show'])->name('ruang');
-        Route::post('/{consultation}/pesan', [RuangKonsultasiController::class, 'kirim'])->name('pesan');
     });
+});
+
+// Ruang Konsultasi (Dapat diakses Pasien & Dokter terkait)
+Route::middleware('auth')->prefix('konsultasi')->name('konsultasi.')->group(function () {
+    Route::get('/{consultation}/ruang', [RuangKonsultasiController::class, 'show'])->name('ruang');
+    Route::post('/{consultation}/pesan', [RuangKonsultasiController::class, 'kirim'])->name('pesan');
 });
 
 // ──────────────────────────────────────────

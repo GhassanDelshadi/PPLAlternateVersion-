@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'admin-Mengelola Data Poli')
+@section('title', 'Admin - Mengelola Data Poli')
 
 @section('content')
+{{-- Header Halaman Sesuai Mockup Figma 20-admin-poli --}}
+<div class="mb-4">
+    <h1 class="h4 fw-bold text-dark mb-1">Data Poli</h1>
+    <p class="text-secondary small mb-0">Kelola poli layanan yang tampil bagi pasien (US-16).</p>
+</div>
+
 <div class="row g-4">
     {{-- Kolom Kiri: Form Tambah / Ubah Poli --}}
     <div class="col-lg-5">

@@ -5,23 +5,23 @@
 @section('content')
 <div class="row align-items-center mb-4">
     <div class="col-md-6">
-        <h2 class="h4 mb-1 text-dark fw-bold">Jadwal Praktik Dokter</h2>
+        <h2 class="h4 mb-1 text-dark fw-bold" style="letter-spacing: -0.02em;">Jadwal Praktik Dokter</h2>
         <p class="text-muted small mb-0">Kelola jadwal hari, jam kerja, dan kuota antrean pasien per dokter</p>
     </div>
     <div class="col-md-6 text-md-end mt-3 mt-md-0">
-        <a href="{{ route('admin.jadwal.create') }}" class="btn btn-primary shadow-sm" dusk="btn-tambah-jadwal">
+        <a href="{{ route('admin.jadwal.create') }}" class="btn btn-primary shadow-sm rounded-pill px-3 py-2 fw-semibold" dusk="btn-tambah-jadwal">
             <i class="bi bi-plus-circle me-1"></i> Tambah Jadwal Praktik
         </a>
     </div>
 </div>
 
 <!-- Card Filter -->
-<div class="card border-0 shadow-sm mb-4">
-    <div class="card-body">
+<div class="card-mockup shadow-sm mb-4">
+    <div class="card-mockup-body p-3">
         <form method="GET" action="{{ route('admin.jadwal.index') }}" class="row g-3 align-items-end">
             <div class="col-md-3">
                 <label class="form-label small fw-semibold text-secondary">Poli</label>
-                <select name="poli_id" class="form-select form-select-sm">
+                <select name="poli_id" class="form-select form-select-sm rounded-3">
                     <option value="">Semua Poli</option>
                     @foreach($polis as $poli)
                         <option value="{{ $poli->id }}" {{ request('poli_id') == $poli->id ? 'selected' : '' }}>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-3">
                 <label class="form-label small fw-semibold text-secondary">Dokter</label>
-                <select name="doctor_id" class="form-select form-select-sm">
+                <select name="doctor_id" class="form-select form-select-sm rounded-3">
                     <option value="">Semua Dokter</option>
                     @foreach($doctors as $doc)
                         <option value="{{ $doc->id }}" {{ request('doctor_id') == $doc->id ? 'selected' : '' }}>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-2">
                 <label class="form-label small fw-semibold text-secondary">Hari</label>
-                <select name="hari" class="form-select form-select-sm">
+                <select name="hari" class="form-select form-select-sm rounded-3">
                     <option value="">Semua Hari</option>
                     @foreach($daftarHari as $h)
                         <option value="{{ $h }}" {{ request('hari') == $h ? 'selected' : '' }}>
@@ -54,17 +54,17 @@
             </div>
             <div class="col-md-2">
                 <label class="form-label small fw-semibold text-secondary">Status</label>
-                <select name="status" class="form-select form-select-sm">
+                <select name="status" class="form-select form-select-sm rounded-3">
                     <option value="">Semua Status</option>
                     <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Aktif</option>
                     <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Nonaktif</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex gap-2">
-                <button type="submit" class="btn btn-outline-primary btn-sm w-100">
+                <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill w-100 fw-semibold">
                     <i class="bi bi-funnel me-1"></i> Filter
                 </button>
-                <a href="{{ route('admin.jadwal.index') }}" class="btn btn-outline-secondary btn-sm" title="Reset filter">
+                <a href="{{ route('admin.jadwal.index') }}" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;" title="Reset filter">
                     <i class="bi bi-arrow-counterclockwise"></i>
                 </a>
             </div>
@@ -73,8 +73,8 @@
 </div>
 
 <!-- Tabel Jadwal -->
-<div class="card border-0 shadow-sm">
-    <div class="card-body p-0">
+<div class="card-mockup shadow-sm">
+    <div class="card-mockup-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
                 <thead class="table-light">
@@ -110,7 +110,7 @@
                                 {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($item->jam_selesai)->format('H:i') }} WIB
                             </td>
                             <td class="text-center">
-                                <span class="badge bg-info-subtle text-info-emphasis px-3 py-2 fw-semibold">
+                                <span class="badge bg-info-subtle text-info-emphasis px-3 py-2 fw-semibold rounded-pill">
                                     {{ $item->kuota }} pasien
                                 </span>
                             </td>
@@ -159,10 +159,9 @@
         </div>
     </div>
     @if($schedules->hasPages())
-        <div class="card-footer bg-white border-0 py-3">
-            {{ $schedules->links() }}
+        <div class="card-footer bg-white border-top py-3 d-flex justify-content-center">
+            {{ $schedules->links('pagination::bootstrap-5') }}
         </div>
     @endif
 </div>
 @endsection
-

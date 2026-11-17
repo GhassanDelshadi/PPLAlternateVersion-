@@ -17,8 +17,11 @@
                 </p>
             </div>
             <div class="d-flex flex-wrap gap-2">
-                <a href="{{ route('admin.poli.create') }}" class="btn btn-light btn-sm fw-semibold rounded-pill px-3 py-2">
-                    <i class="bi bi-plus-circle-fill text-success me-1"></i> Tambah Poli
+                <a href="{{ route('admin.antrean.index') }}" class="btn btn-light text-dark btn-sm fw-bold rounded-pill px-3 py-2 shadow-sm">
+                    <i class="bi bi-ticket-detailed-fill text-success me-1"></i> Monitoring Antrean
+                </a>
+                <a href="{{ route('admin.poli.create') }}" class="btn btn-outline-light btn-sm fw-semibold rounded-pill px-3 py-2">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Poli
                 </a>
                 <a href="{{ route('admin.jadwal.create') }}" class="btn btn-outline-light btn-sm fw-semibold rounded-pill px-3 py-2">
                     <i class="bi bi-calendar-plus me-1"></i> Tambah Jadwal
@@ -106,12 +109,15 @@
                 </div>
                 <div class="d-flex align-items-baseline gap-2">
                     <h2 class="fw-bold text-dark mb-0">{{ $antreanHariIni }}</h2>
-                    <small class="text-muted">Pasien Terdaftar</small>
+                    <small class="text-muted">Pasien Hari Ini</small>
                 </div>
-                <div class="mt-3 pt-2 border-top">
-                    <span class="small text-muted">
-                        Total Pasien Terdaftar: <strong>{{ $totalPasien }}</strong>
+                <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
+                    <span class="small text-muted" style="font-size: 0.75rem;">
+                        Total Tiket: <strong>{{ $totalAntrean ?? 0 }}</strong>
                     </span>
+                    <a href="{{ route('admin.antrean.index') }}" class="small text-decoration-none fw-semibold text-success">
+                        Kelola Antrean <i class="bi bi-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
